@@ -1,6 +1,9 @@
 spring:
   application:
     name: spirng-boot-rabbitmq-demo
+  groovy:
+    template:
+      check-template-location: false
   rabbitmq:
     publisher-confirms: true
     publisher-returns: true
@@ -8,3 +11,10 @@ spring:
     port: 5672
     username: root
     password: root
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+logging:
+  config: classpath:logback.groovy
