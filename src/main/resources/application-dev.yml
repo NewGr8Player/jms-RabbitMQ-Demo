@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spirng-boot-rabbitmq-demo
+  rabbitmq:
+    publisher-confirms: true
+    publisher-returns: true
+    host: 127.0.0.1
+    port: 5672
+    username: root
+    password: root
