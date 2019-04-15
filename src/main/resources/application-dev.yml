@@ -11,6 +11,10 @@ spring:
     port: 5672
     username: root
     password: root
+    manager:
+      startup-command: D:/Develop/RabbitMQ/rabbitmq_server-3.7.14/sbin/rabbitmq-server.bat -detached
+      shutdown-command: D:/Develop/RabbitMQ/rabbitmq_server-3.7.14/sbin/rabbitmqctl.bat stop
+      status-command: D:/Develop/RabbitMQ/rabbitmq_server-3.7.14/sbin/rabbitmqctl.bat status
 springfox:
   documentation:
     swagger:

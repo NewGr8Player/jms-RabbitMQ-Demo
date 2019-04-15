@@ -1,6 +1,7 @@
 package com.xavier.jms.manager;
 
 import com.xavier.jms.JmsApplicationTests;
+import com.xavier.jms.common.ExchangeClassTypeEnum;
 import org.junit.Test;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Message;
@@ -42,7 +43,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 				, true
 				, false
 				, null
-				, SimpleRabbitManager.ExchangeClassType.TopicExchangeType
+				, ExchangeClassTypeEnum.TopicExchangeType
 		);
 	}
 
@@ -122,4 +123,27 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 				)
 		);
 	}
+
+	@Test
+	public void commandTest(){
+		System.out.println(simpleRabbitManager.getStartupCommand());
+		System.out.println(simpleRabbitManager.getShutdownCommand());
+		System.out.println(simpleRabbitManager.getStatusCommand());
+	}
+
+	@Test
+	public void startup() {
+		simpleRabbitManager.startup();
+	}
+
+	@Test
+	public void shutdown() {
+		simpleRabbitManager.shutdown();
+	}
+
+	@Test
+	public void startStatus() {
+		System.out.println(simpleRabbitManager.startStatus());
+	}
+
 }

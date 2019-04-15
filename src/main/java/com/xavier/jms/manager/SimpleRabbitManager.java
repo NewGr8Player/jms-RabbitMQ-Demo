@@ -1,6 +1,7 @@
 package com.xavier.jms.manager;
 
-import lombok.Getter;
+import com.xavier.jms.common.ExchangeClassTypeEnum;
+import com.xavier.jms.common.ExcuteCommand;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -14,8 +15,13 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
+/**
+ * A Simple RabbitMQ manager
+ *
+ * @author NewGr8Player
+ */
 @Component
-public class SimpleRabbitManager {
+public class SimpleRabbitManager extends AbstractMQManager {
 
 	@Autowired
 	private RabbitAdmin rabbitAdmin;
@@ -64,11 +70,11 @@ public class SimpleRabbitManager {
 	 * @param name              the name of the exchange.
 	 * @param durable           true if we are declaring a durable exchange (the exchange will survive a server restart)
 	 * @param autoDelete        true if the server should delete the exchange when it is no longer in use
-	 * @param exchangeClassType AbstractExchange class implements class type
+	 * @param exchangeClassTypeEnum AbstractExchange class implements class type
 	 * @return a declare-confirm method to indicate the exchange was successfully declared
 	 */
-	public boolean declareExchange(final String name, final boolean durable, final boolean autoDelete, Map<String, Object> arguments, final ExchangeClassType exchangeClassType) {
-		Class cls = exchangeClassType.getClazz();
+	public boolean declareExchange(final String name, final boolean durable, final boolean autoDelete, Map<String, Object> arguments, final ExchangeClassTypeEnum exchangeClassTypeEnum) {
+		Class cls = exchangeClassTypeEnum.getClazz();
 		try {
 			Constructor con = cls.getConstructor(String.class, boolean.class, boolean.class, Map.class);
 			AbstractExchange exchange = (AbstractExchange) con.newInstance(name, durable, autoDelete, arguments);
@@ -93,6 +99,8 @@ public class SimpleRabbitManager {
 		}
 
 	}
+
+	//TODO 新增declareExchange的子方法，缺省exchangeClassType，创建方法名对应的exchange
 
 	/**
 	 * Delete an exchange, without regard for whether it is in use or not
@@ -206,19 +214,20 @@ public class SimpleRabbitManager {
 		return rabbitTemplate.receiveAndConvert(queueName, timeoutMillis);
 	}
 
-	/**
-	 * AbstractExchange class implements class type
-	 *
-	 * @author NewGr8Player
-	 */
-	@Getter
-	public enum ExchangeClassType {
-		DirectExchangeType(DirectExchange.class), TopicExchangeType(TopicExchange.class), FanoutExchangeType(FanoutExchange.class), HeadersExchangeType(HeadersExchange.class);
+	@Override
+	public void startup() {
+		super.startup();
+	}
 
-		ExchangeClassType(Class clazz) {
-			this.clazz = clazz;
-		}
+	@Override
+	public void shutdown() {
+		super.shutdown();
+	}
 
-		private Class clazz;
+	@Override
+	public boolean startStatus() {
+		//TODO 判断一下启动状态
+		ExcuteCommand.excute(statusCommand);
+		return true;
 	}
 }

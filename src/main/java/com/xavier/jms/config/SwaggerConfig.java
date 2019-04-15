@@ -14,7 +14,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * 启用Swagger2
+ * Swagger2Config
  *
  * @author NewGr8Player
  */
