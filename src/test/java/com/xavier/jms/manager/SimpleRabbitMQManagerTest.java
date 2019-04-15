@@ -4,7 +4,6 @@ import com.xavier.jms.JmsApplicationTests;
 import com.xavier.jms.common.ExchangeClassTypeEnum;
 import org.junit.Test;
 import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimpleRabbitManagerTest extends JmsApplicationTests {
+public class SimpleRabbitMQManagerTest extends JmsApplicationTests {
 
 	@Autowired
-	private SimpleRabbitManager simpleRabbitManager;
+	private SimpleRabbitMQManager simpleRabbitMQManager;
 
 	@Test
 	public void declareQueue() {
@@ -24,7 +23,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 		final boolean exclusive = false;
 		final boolean autoDelete = false;
 		final Map<String, Object> arguments = new HashMap<>();
-		simpleRabbitManager.declareQueue(queueName, durable, exclusive, autoDelete, arguments);
+		simpleRabbitMQManager.declareQueue(queueName, durable, exclusive, autoDelete, arguments);
 	}
 
 	@Test
@@ -38,7 +37,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 	@Test
 	public void declareExchange() {
 		final String topicName = "test-topic";
-		simpleRabbitManager.declareExchange(
+		simpleRabbitMQManager.declareExchange(
 				topicName
 				, true
 				, false
@@ -55,7 +54,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 	public void declareBinding() {
 		final String queueName = "test-queue";
 		final String topicName = "test-topic";
-		simpleRabbitManager.declareBinding(
+		simpleRabbitMQManager.declareBinding(
 				BindingBuilder
 						.bind(new Queue(queueName))
 						.to(new TopicExchange(topicName))
@@ -77,7 +76,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 
 	@Test
 	public void convertAndSendMessage() {
-		simpleRabbitManager.convertAndSendMessage(
+		simpleRabbitMQManager.convertAndSendMessage(
 				"test.topic"
 				, "key.#"
 				, "测试中文"
@@ -97,7 +96,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 	public void receiveAndConvertMessage() {
 		final String queueName = "test-queue";
 		System.out.println(
-				(String) simpleRabbitManager.receiveAndConvertMessage(
+				(String) simpleRabbitMQManager.receiveAndConvertMessage(
 						queueName
 						, 1000L
 				)
@@ -109,7 +108,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 		final String queueName = "test-queue";
 		final String topicName = "test-topic";
 
-		simpleRabbitManager.convertAndSendMessage(
+		simpleRabbitMQManager.convertAndSendMessage(
 				topicName
 				, "key.#"
 				, "测试中文"
@@ -117,7 +116,7 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 		);
 
 		System.out.println(
-				(String) simpleRabbitManager.receiveAndConvertMessage(
+				(String) simpleRabbitMQManager.receiveAndConvertMessage(
 						queueName
 						, 1000L
 				)
@@ -126,24 +125,24 @@ public class SimpleRabbitManagerTest extends JmsApplicationTests {
 
 	@Test
 	public void commandTest(){
-		System.out.println(simpleRabbitManager.getStartupCommand());
-		System.out.println(simpleRabbitManager.getShutdownCommand());
-		System.out.println(simpleRabbitManager.getStatusCommand());
+		System.out.println(simpleRabbitMQManager.getStartupCommand());
+		System.out.println(simpleRabbitMQManager.getShutdownCommand());
+		System.out.println(simpleRabbitMQManager.getStatusCommand());
 	}
 
 	@Test
 	public void startup() {
-		simpleRabbitManager.startup();
+		simpleRabbitMQManager.startup();
 	}
 
 	@Test
 	public void shutdown() {
-		simpleRabbitManager.shutdown();
+		simpleRabbitMQManager.shutdown();
 	}
 
 	@Test
 	public void startStatus() {
-		System.out.println(simpleRabbitManager.startStatus());
+		System.out.println(simpleRabbitMQManager.startStatus());
 	}
 
 }

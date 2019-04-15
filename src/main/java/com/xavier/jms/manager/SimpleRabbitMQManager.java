@@ -21,7 +21,7 @@ import java.util.Map;
  * @author NewGr8Player
  */
 @Component
-public class SimpleRabbitManager extends AbstractMQManager {
+public class SimpleRabbitMQManager extends AbstractMQManager {
 
 	@Autowired
 	private RabbitAdmin rabbitAdmin;
