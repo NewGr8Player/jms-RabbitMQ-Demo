@@ -72,8 +72,10 @@ AMQP仅仅描述了`label`，而`RabbitMQ`决定了如何使用这个`label`的�
 
 # 参考文章
 
-- [RabbitMQ ：Spring AMQP 快速入门](https://www.jianshu.com/p/935746eb37b2)
-- [RabbitMQ ：RabbitMQ 与 AMQP路由](https://www.jianshu.com/p/65906181393e)
-- [RabbitMQ：RabbitAdmin 与 RabbitTemplate 使用](https://www.jianshu.com/p/e647758a7c50)
-- [RabbitMQ：消息发送确认 与 消息接收确认（ACK）](https://www.jianshu.com/p/2c5eebfd0e95)
+- [RabbitMQ: Spring AMQP 快速入门](https://www.jianshu.com/p/935746eb37b2)
+- [RabbitMQ: RabbitMQ 与 AMQP路由](https://www.jianshu.com/p/65906181393e)
+- [RabbitMQ: RabbitAdmin 与 RabbitTemplate 使用](https://www.jianshu.com/p/e647758a7c50)
+- [RabbitMQ: 消息发送确认 与 消息接收确认（ACK）](https://www.jianshu.com/p/2c5eebfd0e95)
+- [RabbitMQ: 学习笔记](https://blog.csdn.net/doc_sgl/article/details/50615496)
+- [RabbitMQ: Tutorials](https://www.rabbitmq.com/getstarted.html)
 
