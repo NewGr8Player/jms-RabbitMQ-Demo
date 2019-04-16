@@ -5,7 +5,7 @@
 > Linux/Unix上注意用户权限
 
 ```cmd
-rabbitmqctl  add_user [用户名] [密码]
+rabbitmqctl add_user [用户名] [密码]
 ```
 
 ## 用户授权
@@ -21,7 +21,7 @@ rabbitmqctl set_user_tags [用户名] administrator
 > 对于vhost根路径的权限
 
 ```cmd
-rabbitmqctl  set_permissions -p / [用户名] '.*' '.*' '.*'
+rabbitmqctl set_permissions -p / [用户名] '.*' '.*' '.*'
 ```
 
 # RabbitMQ的一些关键词与解释
@@ -53,7 +53,7 @@ AMQP仅仅描述了`label`，而`RabbitMQ`决定了如何使用这个`label`的�
 - Queues are where the messages end up and are received by consumers
 - Bindings are how the messages get routed from the exchange to particular queues.
 
-> Publisher —> exchange — bindings — queue —> Consumer
+> Publisher -> exchange -> bindings -> queue -> Consumer
 
 ## Connection
 
