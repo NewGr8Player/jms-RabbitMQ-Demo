@@ -13,7 +13,7 @@ rabbitmqctl  add_user [用户名] [密码]
 > 直接授予administrator角色，生产环境请酌情赋予角色
 
 ```cmd
-set_user_tags [用户名] administrator
+rabbitmqctl set_user_tags [用户名] administrator
 ```
 
 ## 访问权限

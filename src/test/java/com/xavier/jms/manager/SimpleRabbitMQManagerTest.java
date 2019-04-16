@@ -104,13 +104,20 @@ public class SimpleRabbitMQManagerTest extends JmsApplicationTests {
 	}
 
 	@Test
-	public void convertAndSendThenreceiveAndConvertMessage(){
+	public void convertAndSendThenreceiveAndConvertMessage() {
 		final String queueName = "test-queue";
 		final String topicName = "test-topic";
+		final String routingKey = "key.1";
 
+		simpleRabbitMQManager.declareQueue(queueName, true, false, false, null);
+		simpleRabbitMQManager.declareExchange(topicName, true, false, new HashMap<>(), ExchangeClassTypeEnum.TopicExchangeType);
+		simpleRabbitMQManager.declareBinding(BindingBuilder
+				.bind(new Queue(queueName))
+				.to(new TopicExchange(topicName))
+				.with(routingKey));
 		simpleRabbitMQManager.convertAndSendMessage(
 				topicName
-				, "key.#"
+				, routingKey
 				, "测试中文"
 				, null
 		);
@@ -124,7 +131,7 @@ public class SimpleRabbitMQManagerTest extends JmsApplicationTests {
 	}
 
 	@Test
-	public void commandTest(){
+	public void commandTest() {
 		System.out.println(simpleRabbitMQManager.getStartupCommand());
 		System.out.println(simpleRabbitMQManager.getShutdownCommand());
 		System.out.println(simpleRabbitMQManager.getStatusCommand());
