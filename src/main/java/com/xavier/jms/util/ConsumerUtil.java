@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Component
 public class ConsumerUtil {
+
 	@Autowired
 	private SimpleRabbitMQManager simpleRabbitMQManager;
 
