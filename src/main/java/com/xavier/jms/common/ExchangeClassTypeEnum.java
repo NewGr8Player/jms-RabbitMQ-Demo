@@ -16,21 +16,22 @@ public enum ExchangeClassTypeEnum {
 	/**
 	 * DirectExchange Class Type.
 	 */
-	DirectExchangeType(DirectExchange.class)
+	DirectExchangeType(DirectExchange.class),
 	/**
 	 * TopicExchange Class Type.
 	 */
-	, TopicExchangeType(TopicExchange.class)
+	TopicExchangeType(TopicExchange.class),
 	/**
 	 * FanoutExchange Class Type.
 	 */
-	, FanoutExchangeType(FanoutExchange.class)
+	FanoutExchangeType(FanoutExchange.class),
 	/**
 	 * HeadersExchange Class Type.
 	 *
 	 * @deprecated Its structure is similar to DirectExchange,but low efficency.
 	 */
-	, @Deprecated HeadersExchangeType(HeadersExchange.class);
+	@Deprecated
+	HeadersExchangeType(HeadersExchange.class);
 
 	ExchangeClassTypeEnum(Class clazz) {
 		this.clazz = clazz;

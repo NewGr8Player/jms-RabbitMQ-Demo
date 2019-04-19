@@ -41,8 +41,8 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * {@link org.springframework.amqp.rabbit.core.RabbitAdmin#setIgnoreDeclarationExceptions(boolean) ignoreDeclarationExceptions} is
 	 * true.
 	 */
-	public String declareQueue(final String queueName, final boolean durable, final boolean exclusive, final boolean autoDelete, final Map<String, Object> arguments) {
-		Assert.notNull(queueName,"The name of the queue must not be null!");
+	public String declareQueue(final String queueName, final boolean durable, final boolean exclusive, final boolean autoDelete, final Map<String, Object> arguments) throws IllegalArgumentException {
+		Assert.notNull(queueName, "The name of the queue must not be null!");
 		return rabbitAdmin.declareQueue(new Queue(queueName, durable, exclusive, autoDelete, arguments));
 	}
 
@@ -69,9 +69,9 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	/**
 	 * Declare a new Exchange, given a name, durability flag, auto-delete flag.
 	 *
-	 * @param name              the name of the exchange.
-	 * @param durable           true if we are declaring a durable exchange (the exchange will survive a server restart)
-	 * @param autoDelete        true if the server should delete the exchange when it is no longer in use
+	 * @param name                  the name of the exchange.
+	 * @param durable               true if we are declaring a durable exchange (the exchange will survive a server restart)
+	 * @param autoDelete            true if the server should delete the exchange when it is no longer in use
 	 * @param exchangeClassTypeEnum AbstractExchange class implements class type
 	 * @return a declare-confirm method to indicate the exchange was successfully declared
 	 */
