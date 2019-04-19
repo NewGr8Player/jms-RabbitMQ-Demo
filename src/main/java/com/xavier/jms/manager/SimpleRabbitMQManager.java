@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -41,6 +42,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * true.
 	 */
 	public String declareQueue(final String queueName, final boolean durable, final boolean exclusive, final boolean autoDelete, final Map<String, Object> arguments) {
+		Assert.notNull(queueName,"The name of the queue must not be null!");
 		return rabbitAdmin.declareQueue(new Queue(queueName, durable, exclusive, autoDelete, arguments));
 	}
 
