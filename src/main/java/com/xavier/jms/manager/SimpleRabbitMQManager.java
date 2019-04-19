@@ -118,7 +118,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * Declare a binding
 	 *
 	 * @param destination     name of destination
-	 * @param destinationType Binding.DestinationType enum
+	 * @param destinationType {@link org.springframework.amqp.core.Binding.DestinationType}
 	 * @param exchange        name of exchange
 	 * @param routingKey      key of routing
 	 * @param arguments       the arguments used to declare the binding
