@@ -28,11 +28,11 @@ public class RabbitTemplateReturnCallbackConfig implements RabbitTemplate.Return
 	/**
 	 * Returned message callback.
 	 *
-	 * @param message    the returned message.
-	 * @param replyCode  the reply code.
-	 * @param replyText  the reply text.
-	 * @param exchange   the exchange.
-	 * @param routingKey the routing key.
+	 * @param message    the returned message
+	 * @param replyCode  the reply code
+	 * @param replyText  the reply text
+	 * @param exchange   the exchange
+	 * @param routingKey the routing key
 	 */
 	@Override
 	public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {

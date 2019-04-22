@@ -28,9 +28,9 @@ public class RabbitTemplateConfirmCallbackConfig implements RabbitTemplate.Confi
 	/**
 	 * Confirmation callback.
 	 *
-	 * @param correlationData correlation data for the callback.
+	 * @param correlationData correlation data for the callback
 	 * @param ack             true for ack, false for nack
-	 * @param cause           An optional cause, for nack, when available, otherwise null.
+	 * @param cause           An optional cause, for nack, when available, otherwise null
 	 */
 	@Override
 	public void confirm(CorrelationData correlationData, boolean ack, String cause) {
