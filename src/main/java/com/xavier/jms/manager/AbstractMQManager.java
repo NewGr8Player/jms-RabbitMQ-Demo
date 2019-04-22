@@ -44,7 +44,7 @@ public abstract class AbstractMQManager {
 	 * MQ startup.
 	 */
 	public void startup() {
-		if (StringUtils.isNotBlank(startupCommand) && startStatus()) {
+		if (StringUtils.isNotBlank(startupCommand) && !startStatus()) {
 			log.info("Excute command:{}.", startupCommand);
 			ExcuteCommand.excute(startupCommand);
 		} else {
