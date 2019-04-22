@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -41,7 +42,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * {@link org.springframework.amqp.rabbit.core.RabbitAdmin#setIgnoreDeclarationExceptions(boolean) ignoreDeclarationExceptions} is
 	 * true.
 	 */
-	public String declareQueue(final String queueName, final boolean durable, final boolean exclusive, final boolean autoDelete, final Map<String, Object> arguments) throws IllegalArgumentException {
+	public String declareQueue(@NonNull final String queueName, final boolean durable, final boolean exclusive, final boolean autoDelete, final Map<String, Object> arguments) throws IllegalArgumentException {
 		Assert.notNull(queueName, "The name of the queue must not be null!");
 		return rabbitAdmin.declareQueue(new Queue(queueName, durable, exclusive, autoDelete, arguments));
 	}
@@ -52,7 +53,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * @param queueName the name of the queue
 	 * @return a deletion-confirm method to indicate the queue was successfully deleted
 	 */
-	public boolean deleteQueue(final String queueName) {
+	public boolean deleteQueue(@NonNull final String queueName) {
 		return rabbitAdmin.deleteQueue(queueName);
 	}
 
@@ -62,7 +63,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * @param queueName the name of the queue
 	 * @param noWait    true if don't wait for the purge to occur
 	 */
-	public void purgeQueue(final String queueName, final boolean noWait) {
+	public void purgeQueue(@NonNull final String queueName, final boolean noWait) {
 		rabbitAdmin.purgeQueue(queueName, noWait);
 	}
 
@@ -132,7 +133,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 *
 	 * @param binding binding object
 	 */
-	public void declareBinding(final Binding binding) {
+	public void declareBinding(@NonNull final Binding binding) {
 		rabbitAdmin.declareBinding(binding);
 	}
 
@@ -141,7 +142,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 *
 	 * @param binding binding object
 	 */
-	public void removeBinding(final Binding binding) {
+	public void removeBinding(@NonNull final Binding binding) {
 		rabbitAdmin.removeBinding(binding);
 	}
 
@@ -195,7 +196,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * @param timeoutMillis timeout,unit ms
 	 * @return {@link Message}
 	 */
-	public Message receiveMessage(final String queueName, final long timeoutMillis) {
+	public Message receiveMessage(@NonNull final String queueName, final long timeoutMillis) {
 		if (timeoutMillis < 0L) {
 			throw new IllegalArgumentException("Parameter timeoutMillis must be greater than 0.");
 		}
@@ -209,7 +210,7 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 	 * @param timeoutMillis timeout,unit ms
 	 * @return java object,use TYPE-CAST to get object
 	 */
-	public Object receiveAndConvertMessage(final String queueName, final long timeoutMillis) {
+	public Object receiveAndConvertMessage(@NonNull final String queueName, final long timeoutMillis) {
 		if (timeoutMillis < 0L) {
 			throw new IllegalArgumentException("Parameter timeoutMillis must be greater than 0.");
 		}
