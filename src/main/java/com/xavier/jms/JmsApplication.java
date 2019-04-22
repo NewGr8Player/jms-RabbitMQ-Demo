@@ -19,7 +19,7 @@ public class JmsApplication {
 	}
 
 	/**
-	 * 初始化RabbitAdmin的连接池
+	 * Init rabbitAdmin's connection-pool.
 	 *
 	 * @param connectionFactory
 	 * @return

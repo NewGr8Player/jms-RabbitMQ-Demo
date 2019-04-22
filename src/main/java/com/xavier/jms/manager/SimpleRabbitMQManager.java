@@ -83,21 +83,9 @@ public class SimpleRabbitMQManager extends AbstractMQManager {
 			AbstractExchange exchange = (AbstractExchange) con.newInstance(name, durable, autoDelete, arguments);
 			rabbitAdmin.declareExchange(exchange);
 			return true;
-		} catch (NoSuchMethodException e) {
+		} catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
 			e.printStackTrace();
-			//TODO 反射失败，没有此方法
-			return false;
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			//TODO 反射失败，没有调用权限
-			return false;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			//TODO 反射失败，实例化失败
-			return false;
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-			//TODO 反射失败，调用目标失败
+			//TODO 反射异常处理
 			return false;
 		}
 

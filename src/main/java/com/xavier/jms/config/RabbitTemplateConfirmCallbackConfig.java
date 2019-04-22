@@ -39,6 +39,5 @@ public class RabbitTemplateConfirmCallbackConfig implements RabbitTemplate.Confi
 		} else {
 			log.error("CorrelationData:{},Nack:{}.", correlationData, cause);
 		}
-
 	}
 }

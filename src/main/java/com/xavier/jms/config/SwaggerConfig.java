@@ -25,7 +25,6 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket openApi() {
-
 		return new Docket(DocumentationType.SWAGGER_2)
 				.groupName("RabbitMQ-Demo")
 				.genericModelSubstitutes(DeferredResult.class)
